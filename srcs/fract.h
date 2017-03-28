@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fract.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FRACT_H
+# define FRACT_H
+# define MAX 1000
 # define T_W	fdf.t_s
 # define T_H	fdf.t_s
 # define X_OFF	fdf.t_w
@@ -24,47 +25,45 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include "mlx_keys_mac.h"
 # include "../libft/libft.h"
-# include "../minilibx/mlx.h"
-# include <math.h>
+# include "../mlx/mlx.h"
 
-typedef struct		s_fdf
+
+typedef struct		s_frac
 {
-	int				**ary;
-	int				x;
-	int				y;
-	int				y0;
-	int				y1;
-	int				x0;
-	int				x1;
-	int				i;
-	int				j;
+	int				row;
+	int				col;
 	int				h;
-	int				t_w;
-	int				t_h;
-	int				t_s;
-	char			*file;
+	int				w;
+	int				iter;
+	int				rgb;
+	float			x;
+	float			x0;
+	float			y;
+	float			y0;
+	float			c_re;
+	float			c_im;
 	void			*mlx;
 	void			*win;
-}					t_fdf;
+}					t_frac;
 
-typedef struct		s_line
+typedef struct		s_rgb
 {
-	int				dx;
-	int				dy;
-	int				stp;
-	int				x;
-	int				y;
-	int				x1;
-	int				y1;
-	int				x2;
-	int				y2;
-	int				derr;
-	int				err;
-}					t_line;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}					t_rgb;
 
-t_fdf				readin(int fd);
-int					graphics(t_fdf *fdf);
+struct				s_colors
+{
+	char			*name;
+	int				color;
+};
+
+
+void				colors(t_frac fr);
+void				mand_init(t_frac fr);
 
 #endif

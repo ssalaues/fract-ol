@@ -10,24 +10,26 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = fractol
 
 SRCS = \
-		main.c		\
-		graphics.c
+		main.c			\
+		mandelbrot.c	\
+		colors.c		\
+		mlx_rgb.c
 
 all: $(NAME)
 
-$(NAME): lib mlx
-	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -g
-	cd srcs && clang $(SRCS:.c=.o) -g -L../mlx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -o $(NAME)
-	mv srcs/fdf .
+$(NAME): minilx lib
+	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -O2
+	@cd srcs && clang $(SRCS:.c=.o) -L../mlx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -o $(NAME) -O2
+	@mv srcs/$(NAME) .
 
 lib:
-	@cd libft && make
+	@make -C libft
 
-mlx:
-	@cd minilibx && make
+minilx:
+	@make -C mlx
 
 clean:
 	@cd libft && make clean
@@ -35,7 +37,7 @@ clean:
 
 fclean: clean
 	@cd libft && make fclean
-	@cd minilibx && make clean
+	@cd mlx && make clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
