@@ -1,5 +1,5 @@
 #include "fract.h"
-int key_h(int kc, t_frac *fr)
+int key_h(int kc)
 {
         if (kc == KEY_ESCAPE)
             exit(0);

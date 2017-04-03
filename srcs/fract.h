@@ -26,6 +26,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <OpenCL/opencl.h>
 # include "mlx_keys_mac.h"
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
@@ -37,17 +38,29 @@ typedef struct		s_frac
 	int				col;
 	int				h;
 	int				w;
+    int             i;
+    int             j;
 	int				iter;
+    int             min;
+    int             max;
 	int				rgb;
 	float			x;
+    float           zx;
+    float           zx2;
 	float			x0;
 	float			y;
+    float           zy;
+    float           zy2;
 	float			y0;
 	float			c_re;
 	float			c_im;
+    float           scale;
+    float           sx;
+    float           sy;
 	void			*mlx;
 	void			*win;
 }					t_frac;
+
 
 typedef struct		s_rgb
 {
@@ -64,6 +77,8 @@ struct				s_colors
 
 
 void				colors(t_frac fr);
+void				mand_colors(t_frac fr);
 void				mand_init(t_frac fr);
+void                mandy_broad(t_frac f);
 
 #endif
