@@ -8,7 +8,7 @@ float	lip(float v0, float v1, float t)
 	return (v0 + t * (v1 - v0));
 }
 
-void	colors(t_frac fr)
+void	colors2(t_frac fr)
 {
 	double log_zn;
 	double nu;
@@ -24,7 +24,7 @@ void	colors(t_frac fr)
 		mlx_pixel_put(fr.mlx, fr.win, fr.col, fr.row, C_1);
 }
 
-void	mand_colors(t_frac fr)
+void	colors(t_frac fr)
 {
     double log_zn;
     double nu;
@@ -34,8 +34,8 @@ void	mand_colors(t_frac fr)
         log_zn = log(pow(fr.x, 2) + pow(fr.y, 2)) / 2;
         nu = log(log_zn / log(2)) / log(2);
         fr.iter = fr.iter + 1 - nu;
-        mlx_pixel_put(fr.mlx, fr.win, fr.i, fr.j, lip(mlx_col[(int)floor(fr.iter)].color, mlx_col[(int)floor(fr.iter) + 1].color, fr.iter % 1));
+        mlx_pixel_put(fr.mlx, fr.win, fr.col, fr.row, mlx_col[fr.iter].color);
     }
     else
-        mlx_pixel_put(fr.mlx, fr.win, fr.i, fr.j, C_1);
+        mlx_pixel_put(fr.mlx, fr.win, fr.col, fr.row, C_1);
 }

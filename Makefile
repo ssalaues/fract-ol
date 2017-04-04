@@ -21,8 +21,8 @@ SRCS = \
 all: $(NAME)
 
 $(NAME): minilx lib
-	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -O2
-	@cd srcs && clang $(SRCS:.c=.o) -L../mlx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -o $(NAME) -O2
+	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -Ofast -ffast-math
+	@cd srcs && clang $(SRCS:.c=.o) -L../mlx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -o $(NAME) -Ofast -ffast-math
 	@mv srcs/$(NAME) .
 
 lib:
