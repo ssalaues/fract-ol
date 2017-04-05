@@ -14,14 +14,17 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 	fr->zy = 1;
 	if (b)
 		printf("button: %d X: %d Y: %d\n", b, x, y);
-	if (x || y)
+	if (b == 1 || b == 2)
 	{
-		fr->zx = x;
-		fr->zx = y;
-		fr->scale /= 2.;
+		fr->zx = x >> 1;
+		fr->zy = y >> 1;
+		if (b == 1)
+			fr->scale /= 2.;
+		if (b == 2)
+			fr->scale *= 2.;
+		mlx_clear_window(fr->mlx, fr->win);
+		mandy(*fr);
 	}
-	mlx_clear_window(fr->mlx, fr->win);
-	mandy(*fr);
 	return (0);
 }
 

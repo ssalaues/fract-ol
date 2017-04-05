@@ -39,8 +39,8 @@ int	mandy(t_frac fr)
 		fr.col = 0;
 		while (fr.col < fr.w)
 		{
-			fr.c_re = ((fr.col - 1250/* move around*/) * 4. / fr.w) * fr.scale; //mandel height
-			fr.c_im = ((fr.row - 500/* move around*/) * 4. / fr.w) * fr.scale; //mandel width
+			fr.c_re = ((fr.col - 1250/* - fr.zy move around*/) * 4. / fr.w) * fr.scale; //mandel height
+			fr.c_im = ((fr.row - 500/* - fr.zx move around*/) * 4. / fr.w) * fr.scale; //mandel width
 			fr.x = 0;
 			fr.y = 0;
 			fr.iter = 0;
