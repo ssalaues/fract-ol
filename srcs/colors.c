@@ -26,14 +26,9 @@ void	colors2(t_frac fr)
 
 void	colors(t_frac fr)
 {
-    double log_zn;
-    double nu;
 #include "mlx_rgb.c"
     if (fr.iter < MAX)
     {
-        log_zn = log(pow(fr.x, 2) + pow(fr.y, 2)) / 2;
-        nu = log(log_zn / log(2)) / log(2);
-        fr.iter = fr.iter + 1 - nu;
         mlx_pixel_put(fr.mlx, fr.win, fr.col, fr.row, mlx_col[fr.iter].color);
     }
     else

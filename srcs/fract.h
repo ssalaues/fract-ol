@@ -12,7 +12,7 @@
 
 #ifndef FRACT_H
 # define FRACT_H
-# define MAX 500
+# define MAX 100
 # define T_W	fdf.t_s
 # define T_H	fdf.t_s
 # define X_OFF	fdf.t_w
@@ -38,8 +38,6 @@ typedef struct		s_frac
 	int				col;
 	int				h;
 	int				w;
-    int             i;
-    int             j;
 	int				iter;
     int             min;
     int             max;
@@ -78,7 +76,8 @@ struct				s_colors
 
 void				colors(t_frac fr);
 void				mand_colors(t_frac fr);
-void				mand_init(t_frac fr);
+int                 mand_init(int b, int x, int y, t_frac fr);
+int                 mandy(t_frac fr);
 void                mandy_broad(t_frac f);
 
 #endif
