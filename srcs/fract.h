@@ -12,7 +12,7 @@
 
 #ifndef FRACT_H
 # define FRACT_H
-# define MAX 100
+# define MAX 1000
 # define T_W	fdf.t_s
 # define T_H	fdf.t_s
 # define X_OFF	fdf.t_w
