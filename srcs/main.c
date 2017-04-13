@@ -16,15 +16,15 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 	{
 		//fr->zx -= 1250 - x;
 //		if (y > fr->zy)
-		fr->zy -= 500 - y;
+		fr->zy += 500 - y; //working one
 //		if (y < fr->zy)
 //			fr->zy -= 500 - y;
 		fr->zx += 1250 - x;
 		if (b == 1)
-			fr->scale /= .1;
+			fr->scale /= 1.1;
 		if (b == 2)
-			fr->scale *= .1;
-		printf("move: %i X: %f Y: %d\n", b, fr->zx, fr->zy);
+			fr->scale *= 1.1;
+		printf("move: %i X: %f Y: %f\n", b, fr->zx, fr->zy);
 		mandy(*fr);
 	}
 	return (0);

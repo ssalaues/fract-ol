@@ -8,8 +8,8 @@ int	mandy(t_frac fr)
 		fr.col = 0;
 		while (fr.col < fr.w)
 		{
-			fr.c_re = ((fr.col - fr.zx/*translate*/) * 4. / fr.w);// * fr.scale; //mandel height
-			fr.c_im = ((fr.row - fr.zy/*translate*/) * 4. / fr.w);// * fr.scale; //mandel width
+			fr.c_re = ((fr.col - fr.zx/*translate*/) * 4. / fr.w) * fr.scale; //mandel height
+			fr.c_im = ((fr.row - fr.zy/*translate*/) * 4. / fr.w) * fr.scale; //mandel width
 			fr.x = 0;
 			fr.y = 0;
 			fr.iter = 0;
