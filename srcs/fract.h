@@ -12,7 +12,7 @@
 
 #ifndef FRACT_H
 # define FRACT_H
-# define MAX 1000
+# define MAX 100
 # define T_W	fdf.t_s
 # define T_H	fdf.t_s
 # define X_OFF	fdf.t_w
@@ -26,6 +26,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <pthread.h>
 # include <OpenCL/opencl.h>
 # include "mlx_keys_mac.h"
 # include "../libft/libft.h"
