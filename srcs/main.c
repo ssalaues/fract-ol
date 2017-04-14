@@ -1,8 +1,10 @@
 #include "fract.h"
 int key_h(int kc, t_frac *fr)
 {
-        if (kc == KEY_ESCAPE)
-            exit(0);
+	if (kc == KEY_ESCAPE)
+		exit(0);
+	if (kc == KEY_LEFT)
+		jules(*fr);
 	mandy(*fr);
     printf("keycode:%d\n", kc);
     return (0);
@@ -14,11 +16,7 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 		printf("button: %d X: %d Y: %d\n", b, x, y);
 	if (b == 1 || b == 2)
 	{
-		//fr->zx -= 1250 - x;
-//		if (y > fr->zy)
 		fr->zy += 500 - y; //working one
-//		if (y < fr->zy)
-//			fr->zy -= 500 - y;
 		fr->zx += 1250 - x;
 		if (b == 1)
 			fr->scale /= 1.1;
@@ -34,8 +32,8 @@ int	main(void)
 {
 	t_frac fr;
 
-	fr.h = 1000;
-	fr.w = 2500;
+	fr.h = 500;
+	fr.w = 1250;
     fr.zx = 1250;
     fr.zy = 500;
 	fr.scale = 1.;

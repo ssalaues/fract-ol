@@ -79,6 +79,6 @@ void				colors(t_frac fr);
 void				mand_colors(t_frac fr);
 int                 mand_init(int b, int x, int y, t_frac fr);
 int                 mandy(t_frac fr);
-void                mandy_broad(t_frac f);
+int                jules(t_frac fr);
 
 #endif
