@@ -11,7 +11,7 @@ int jules(t_frac fr)
 		fr.col = 0;
 		while(fr.col < fr.h)
 		{
-			fr.x = 0
+			fr.x = 0;
 			fr.y = 0;
 			fr.iter = 0;
 		}
