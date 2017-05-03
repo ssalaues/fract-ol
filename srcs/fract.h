@@ -31,6 +31,7 @@
 # include "mlx_keys_mac.h"
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include "../tp_lib/ft_tp.h"
 
 
 typedef struct		s_frac
@@ -79,6 +80,10 @@ void				colors(t_frac fr);
 void				mand_colors(t_frac fr);
 int                 mand_init(int b, int x, int y, t_frac fr);
 int                 mandy(t_frac fr);
+void                *mandy1(void *data); //For Threading application
+void                *mandy2(void *data);
+void                *mandy3(void *data);
+void                *mandy4(void *data);
 int                jules(t_frac fr);
 
 #endif

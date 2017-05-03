@@ -12,6 +12,8 @@
 
 NAME = fractol
 
+GF = -framework OpenGL -framework Appkit
+
 SRCS = \
 		main.c			\
 		mandelbrot.c	\
@@ -20,9 +22,9 @@ SRCS = \
 
 all: $(NAME)
 
-$(NAME): minilx lib
-	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -Ofast -ffast-math
-	@cd srcs && clang $(SRCS:.c=.o) -L../mlx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -o $(NAME) -Ofast -ffast-math
+$(NAME): minilx lib tp
+	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -Ofast -ffast-math -m64
+	@cd srcs && clang $(SRCS:.c=.o) -L../mlx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -L../tp_lib -ltp -o $(NAME) -Ofast -ffast-math
 	@mv srcs/$(NAME) .
 
 lib:
@@ -30,6 +32,9 @@ lib:
 
 minilx:
 	@make -C mlx
+
+tp:
+	@make -C tp_lib
 
 clean:
 	@cd libft && make clean

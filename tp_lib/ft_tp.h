@@ -4,8 +4,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include "../srcs/fract.h"
 
-typedef char *	t_job_data_type;
+typedef void *	t_job_data_type;
 
 typedef struct
 {

@@ -1,4 +1,4 @@
-N1 = lib_tp
+N1 = libtp
 
 EX = tp_example
 

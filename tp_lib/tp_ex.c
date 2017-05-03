@@ -1,5 +1,5 @@
 #include "ft_tp.h"
-
+/*
 void	*thread_func(void * arg)
 {
 	t_job_type	*job;
@@ -44,3 +44,4 @@ int main(void)
 
 	return (0);
 }
+*/
