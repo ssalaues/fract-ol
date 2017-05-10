@@ -76,6 +76,7 @@ struct				s_colors
 };
 
 
+t_frac              structdup(t_frac *fr);
 void				colors(t_frac fr);
 void				mand_colors(t_frac fr);
 int                 mand_init(int b, int x, int y, t_frac fr);

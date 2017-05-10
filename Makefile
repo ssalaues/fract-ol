@@ -18,7 +18,8 @@ SRCS = \
 		main.c			\
 		mandelbrot.c	\
 		colors.c		\
-		mlx_rgb.c
+		mlx_rgb.c		\
+		tools.c
 
 all: $(NAME)
 

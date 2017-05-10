@@ -10,13 +10,13 @@ int	fr_tp(t_frac *fr)
 	
 	tp = ft_tp_create(4);
 	j1 = (t_job_type*)malloc(sizeof(*j1));
-	j1->data = fr;
+	j1->data = structdup(fr);
 	j2 = (t_job_type*)malloc(sizeof(*j2));
-	j2->data = fr;
+	j2->data = structdup(fr);
 	j3 = (t_job_type*)malloc(sizeof(*j3));
-	j3->data = fr;
+	j3->data = structdup(fr);
 	j4 = (t_job_type*)malloc(sizeof(*j4));
-	j4->data = fr;
+	j4->data = structdup(fr);
 	
 	ft_tp_add_task(tp, &mandy1, j1);
 	ft_tp_add_task(tp, &mandy2, j2);
