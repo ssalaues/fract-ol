@@ -20,7 +20,7 @@ int	mandy(t_frac fr)
 				fr.x = fr.x0;
 				fr.iter++;
 			}
-			colors(fr);
+			colors(fr); // Need to load all the values into memory and then put image
 			fr.col++;
 		}
 		fr.row++;
@@ -28,12 +28,12 @@ int	mandy(t_frac fr)
 	return (0);
 }
 
-void	*mandy1(void *data)
+void	*mandy1(void *data, int max_row, int max_col)
 {
 	t_frac	*fr;
 	
 	fr = data;
-	fr->row = 0;
+	fr->row = max_row - 200;
 	while (fr->row < 200)
 	{
 		fr->col = 0;
@@ -51,7 +51,7 @@ void	*mandy1(void *data)
 				fr->x = fr->x0;
 				fr->iter++;
 			}
-			colors(*fr);
+			colors(*fr);// Need to load all the values into memory and then put image
 			fr->col++;
 		}
 		fr->row++;
@@ -82,7 +82,7 @@ void	*mandy2(void *data)
 				fr->x = fr->x0;
 				fr->iter++;
 			}
-			colors(*fr);
+			colors(*fr); // Need to load all the values into memory and then put image
 			fr->col++;
 		}
 		fr->row++;
@@ -113,7 +113,7 @@ void	*mandy3(void *data)
 				fr->x = fr->x0;
 				fr->iter++;
 			}
-			colors(*fr);
+			colors(*fr);// Need to load all the values into memory and then put image
 			fr->col++;
 		}
 		fr->row++;
@@ -144,7 +144,7 @@ void	*mandy4(void *data)
 				fr->x = fr->x0;
 				fr->iter++;
 			}
-			colors(*fr);
+			colors(*fr);// Need to load all the values into memory and then put image
 			fr->col++;
 		}
 		fr->row++;

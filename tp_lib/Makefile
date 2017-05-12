@@ -1,15 +1,15 @@
-N1 = libtp
+NAME = libthreadp
 
 EX = tp_example
 
 SRCS = \
 		tp_lib.c
 
-all: $(N1)
+all: $(NAME)
 
-$(N1): lib 
+$(NAME): lib 
 	@clang -Wall -Wextra -Werror -c $(SRCS)
-	@ar rcs $(N1) $(SRCS:.c=.o)
+	@ar rcs $(NAME) $(SRCS:.c=.o)
 	@echo "\033[34m SUCCESS\n"
 
 example: lib
@@ -25,7 +25,7 @@ clean:
 
 fclean: clean
 	@make fclean -C ../libft
-	@/bin/rm -f $(N1)
+	@/bin/rm -f $(NAME)
 	@/bin/rm -f $(EX)
 
 re: fclean all

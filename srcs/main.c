@@ -10,18 +10,18 @@ int	fr_tp(t_frac *fr)
 	
 	tp = ft_tp_create(4);
 	j1 = (t_job_type*)malloc(sizeof(*j1));
-	j1->data = structdup(fr);
+	j1->data = (void*)structdup(fr, 200, 400);
 	j2 = (t_job_type*)malloc(sizeof(*j2));
-	j2->data = structdup(fr);
+	j2->data = (void*)structdup(fr, 400, 800);
 	j3 = (t_job_type*)malloc(sizeof(*j3));
-	j3->data = structdup(fr);
+	j3->data = (void*)structdup(fr, 600, 1200);
 	j4 = (t_job_type*)malloc(sizeof(*j4));
-	j4->data = structdup(fr);
+	j4->data = (void*)structdup(fr, 800, 1600);
 	
 	ft_tp_add_task(tp, &mandy1, j1);
-	ft_tp_add_task(tp, &mandy2, j2);
-	ft_tp_add_task(tp, &mandy3, j3);
-	ft_tp_add_task(tp, &mandy4, j4);
+	ft_tp_add_task(tp, &mandy1, j2);
+	ft_tp_add_task(tp, &mandy1, j3);
+	ft_tp_add_task(tp, &mandy1, j4);
 	
 	ft_tp_wait_for_queue(tp);
 	return (0);

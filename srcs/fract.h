@@ -37,7 +37,9 @@
 typedef struct		s_frac
 {
 	int				row;
+	int				max_row;
 	int				col;
+	int				max_col;
 	int				h;
 	int				w;
 	int				iter;
@@ -57,6 +59,7 @@ typedef struct		s_frac
     float           scale;
     float           sx;
     float           sy;
+	void			*image;
 	void			*mlx;
 	void			*win;
 }					t_frac;
@@ -76,7 +79,7 @@ struct				s_colors
 };
 
 
-t_frac              structdup(t_frac *fr);
+t_frac             *structdup(t_frac *fr, int max_row, int max_col);
 void				colors(t_frac fr);
 void				mand_colors(t_frac fr);
 int                 mand_init(int b, int x, int y, t_frac fr);
