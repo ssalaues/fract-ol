@@ -67,12 +67,10 @@ int	main(void)
 	fr.scale = 1.;
 	fr.mlx = mlx_init();
 	fr.win = mlx_new_window(fr.mlx, fr.w, fr.h, "Fract'ol");
-//    mand_init(fr);
-//    mlx_loop_hook(fr.mlx, &mand_init, &fr);
 	mlx_mouse_hook(fr.win, &mouse_h, &fr);
 	mlx_key_hook(fr.win, &key_h, &fr);
 	//mlx_expose_hook(fr.win, &mandy, &fr);
-	mandy(fr);
+	//mandy(fr);
 //	fr_tp(&fr);
 	mlx_loop(fr.mlx);
 }
