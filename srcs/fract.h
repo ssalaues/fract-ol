@@ -13,8 +13,8 @@
 #ifndef FRACT_H
 # define FRACT_H
 # define MAX 100
-# define T_W	fdf.t_s
-# define T_H	fdf.t_s
+# define T_W	1600
+# define T_H	800
 # define X_OFF	fdf.t_w
 # define Y_OFF	fdf.t_h
 # define C_1 0xfffd4
@@ -46,6 +46,7 @@ typedef struct		s_frac
     int             min;
     int             max;
 	int				rgb;
+	int				image[T_W * T_H];
 	float			x;
     float           zx;
     float           zx2;
@@ -59,7 +60,6 @@ typedef struct		s_frac
     float           scale;
     float           sx;
     float           sy;
-	void			*image;
 	void			*mlx;
 	void			*win;
 }					t_frac;

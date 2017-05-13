@@ -14,19 +14,22 @@ NAME = fractol
 
 GF = -framework OpenGL -framework Appkit
 
+FLAGS = -Ofast -ffast-math -m64 -g
+
+LIBS = -lpthread -lmlx -lft -L./mlx -L./libft ./tp_lib/libftthread
+
 SRCS = \
-		main.c			\
-		mandelbrot.c	\
-		colors.c		\
-		mlx_rgb.c		\
-		tools.c
+		./srcs/main.c			\
+		./srcs/mandelbrot.c		\
+		./srcs/julia.c			\
+		./srcs/colors.c			\
+		./srcs/mlx_rgb.c		\
+		./srcs/tools.c
 
 all: $(NAME)
 
 $(NAME): minilx lib tp
-	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -Ofast -ffast-math -m64
-	@cd srcs && clang $(SRCS:.c=.o) -L../mlx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -L../tp_lib -ltp -o $(NAME) -Ofast -ffast-math
-	@mv srcs/$(NAME) .
+	@clang $(SRCS) $(GF) $(LIBS) -o $(NAME) $(FLAGS)
 
 lib:
 	@make -C libft

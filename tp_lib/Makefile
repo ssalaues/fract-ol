@@ -1,4 +1,4 @@
-NAME = libthreadp
+NAME = libftthread
 
 EX = tp_example
 

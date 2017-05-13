@@ -28,16 +28,16 @@ int	mandy(t_frac fr)
 	return (0);
 }
 
-void	*mandy1(void *data, int max_row, int max_col)
+void	*mandy1(void *data)
 {
 	t_frac	*fr;
 	
 	fr = data;
-	fr->row = max_row - 200;
-	while (fr->row < 200)
+	fr->row = fr->max_row - 200;
+	while (fr->row < fr->max_row)
 	{
 		fr->col = 0;
-		while (fr->col < 400)
+		while (fr->col < fr->max_col)
 		{
 			fr->c_re = ((fr->col - fr->zx/*translate*/) * 4. / fr->w) * fr->scale; //mandel height
 			fr->c_im = ((fr->row - fr->zy/*translate*/) * 4. / fr->w) * fr->scale; //mandel width
@@ -51,7 +51,7 @@ void	*mandy1(void *data, int max_row, int max_col)
 				fr->x = fr->x0;
 				fr->iter++;
 			}
-			colors(*fr);// Need to load all the values into memory and then put image
+			//colors(*fr);// Need to load all the values into memory and then put image
 			fr->col++;
 		}
 		fr->row++;

@@ -1,10 +1,14 @@
 #include "fract.h"
-/*
+t_frac	*imageinit(t_frac *fr)
+{
+	return(fr);
+}
+
 t_frac	*storeval(t_frac *fr)
 {
-	
+	return (fr);
 }
-*/
+
 t_frac *structdup(t_frac *fr, int max_row, int max_col)
 {
     t_frac *new;

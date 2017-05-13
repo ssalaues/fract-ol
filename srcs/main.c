@@ -60,10 +60,10 @@ int	main(void)
 {
 	t_frac fr;
 
-	fr.h = 800;
-	fr.w = 1600;
-    fr.zx = 1600;
-    fr.zy = 800;
+	fr.h = T_H;
+	fr.w = T_W;
+    fr.zx = T_W;
+    fr.zy = T_H;
 	fr.scale = 1.;
 	fr.mlx = mlx_init();
 	fr.win = mlx_new_window(fr.mlx, fr.w, fr.h, "Fract'ol");
@@ -72,7 +72,7 @@ int	main(void)
 	mlx_mouse_hook(fr.win, &mouse_h, &fr);
 	mlx_key_hook(fr.win, &key_h, &fr);
 	//mlx_expose_hook(fr.win, &mandy, &fr);
-//	mandy(fr);
-	fr_tp(&fr);
+	mandy(fr);
+//	fr_tp(&fr);
 	mlx_loop(fr.mlx);
 }
