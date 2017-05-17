@@ -46,7 +46,7 @@ typedef struct		s_frac
     int             min;
     int             max;
 	int				rgb;
-	int				image[T_W * T_H];
+//	int				image[T_W * T_H];
 	float			x;
     float           zx;
     float           zx2;

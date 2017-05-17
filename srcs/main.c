@@ -33,7 +33,8 @@ int key_h(int kc, t_frac *fr)
 		exit(0);
 	if (kc == KEY_LEFT)
 		jules(*fr);
-	mandy(*fr);
+	//mandy(*fr);
+	fr_tp(fr);
     printf("keycode:%d\n", kc);
     return (0);
 }
@@ -51,7 +52,8 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 		if (b == 2)
 			fr->scale *= 1.1;
 		printf("move: %i X: %f Y: %f\n", b, fr->zx, fr->zy);
-		mandy(*fr);
+		//mandy(*fr);
+		fr_tp(fr);
 	}
 	return (0);
 }
