@@ -13,8 +13,8 @@
 #ifndef FRACT_H
 # define FRACT_H
 # define MAX 100
-# define T_W	1600
-# define T_H	800
+# define T_W	1920
+# define T_H	1080
 # define X_OFF	fdf.t_w
 # define Y_OFF	fdf.t_h
 # define C_1 0xfffd4
@@ -36,7 +36,7 @@
 
 typedef struct		s_img
 {
-	int				image[T_W * T_H];
+	unsigned char	*image;
 	void			*mlx;
 	void			*win;
 }					t_img;
