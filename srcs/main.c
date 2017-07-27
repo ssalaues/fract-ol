@@ -24,6 +24,7 @@ int	fr_tp(t_frac *fr)
 	ft_tp_add_task(tp, &mandy1, j4);
 	
 	ft_tp_wait_for_queue(tp);
+	mlx_put_image_to_window(fr->rend->win, fr->rend->mlx, fr->rend->image, 0, 0);
 	return (0);
 }
 
@@ -61,18 +62,19 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 int	main(void)
 {
 	t_frac fr;
-
+	
+	fr.rend = (t_img*)ft_memalloc(sizeof(t_img));
 	fr.h = T_H;
 	fr.w = T_W;
     fr.zx = T_W;
     fr.zy = T_H;
 	fr.scale = 1.;
-	fr.mlx = mlx_init();
-	fr.win = mlx_new_window(fr.mlx, fr.w, fr.h, "Fract'ol");
-	mlx_mouse_hook(fr.win, &mouse_h, &fr);
-	mlx_key_hook(fr.win, &key_h, &fr);
+	fr.rend->mlx = mlx_init();
+	fr.rend->win = mlx_new_window(fr.rend->mlx, fr.w, fr.h, "Fract'ol");
+	mlx_mouse_hook(fr.rend->win, &mouse_h, &fr);
+	mlx_key_hook(fr.rend->win, &key_h, &fr);
 	//mlx_expose_hook(fr.win, &mandy, &fr);
 	//mandy(fr);
-//	fr_tp(&fr);
-	mlx_loop(fr.mlx);
+	fr_tp(&fr);
+	mlx_loop(fr.rend->mlx);
 }

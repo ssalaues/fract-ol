@@ -34,36 +34,12 @@
 # include "../tp_lib/ft_tp.h"
 
 
-typedef struct		s_frac
+typedef struct		s_img
 {
-	int				row;
-	int				max_row;
-	int				col;
-	int				max_col;
-	int				h;
-	int				w;
-	int				iter;
-    int             min;
-    int             max;
-	int				rgb;
-//	int				image[T_W * T_H];
-	float			x;
-    float           zx;
-    float           zx2;
-	float			x0;
-	float			y;
-    float           zy;
-    float           zy2;
-	float			y0;
-	float			c_re;
-	float			c_im;
-    float           scale;
-    float           sx;
-    float           sy;
+	int				image[T_W * T_H];
 	void			*mlx;
 	void			*win;
-}					t_frac;
-
+}					t_img;
 
 typedef struct		s_rgb
 {
@@ -78,9 +54,40 @@ struct				s_colors
 	int				color;
 };
 
+typedef struct		s_frac
+{
+	int				row;
+	int				max_row;
+	int				col;
+	int				max_col;
+	int				h;
+	int				w;
+	int				iter;
+	int             min;
+	int             max;
+	int				rgb;
+	unsigned char	image[T_W * T_H];
+	float			x;
+	float           zx;
+	float           zx2;
+	float			x0;
+	float			y;
+	float           zy;
+	float           zy2;
+	float			y0;
+	float			c_re;
+	float			c_im;
+	float           scale;
+	float           sx;
+	float           sy;
+	t_img			*rend;
+	//	void			*mlx;
+	//	void			*win;
+}					t_frac;
+
 
 t_frac             *structdup(t_frac *fr, int max_row, int max_col);
-void				colors(t_frac fr);
+void				colors(t_frac fr, int col, int row);
 void				mand_colors(t_frac fr);
 int                 mand_init(int b, int x, int y, t_frac fr);
 int                 mandy(t_frac fr);

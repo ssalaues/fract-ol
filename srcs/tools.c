@@ -14,7 +14,7 @@ t_frac *structdup(t_frac *fr, int max_row, int max_col)
     t_frac *new;
 	
 	new = (t_frac*)ft_memalloc(sizeof(t_frac));
-    new->row = fr->row;
+    new->row = max_row - 200;
 	new->max_row = max_row;
 	new->max_col = max_col;
     new->col = fr->col;
@@ -37,8 +37,9 @@ t_frac *structdup(t_frac *fr, int max_row, int max_col)
     new->scale = fr->scale;
     new->sx = fr->sx;
     new->sy = fr->sy;
-    new->mlx = fr->mlx;
-    new->win = fr->win;
+	new->rend = fr->rend;
+//    new->mlx = fr->mlx;
+//    new->win = fr->win;
 
     return(new);
 }
