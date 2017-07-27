@@ -54,6 +54,17 @@ struct				s_colors
 	int				color;
 };
 
+typedef struct	s_gpu
+{
+	cl_device_id		device_id;	// compute device id
+	cl_context			context;	// compute context
+	cl_command_queue	commands;	// compute command queue
+	cl_program			program;	// compute program
+	cl_kernel			kernel;		// compute kernel
+	cl_mem				input;		// device mem used for input array
+	cl_mem				output;		// device mem used for output array
+}				t_gpu;
+
 typedef struct		s_frac
 {
 	int				row;
@@ -81,8 +92,7 @@ typedef struct		s_frac
 	float           sx;
 	float           sy;
 	t_img			*rend;
-	//	void			*mlx;
-	//	void			*win;
+	t_gpu			*gpu;
 }					t_frac;
 
 

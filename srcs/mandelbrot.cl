@@ -1,6 +1,6 @@
 const sampler_t sampler = CLK_NORMALIZED_COORDS_FLASE | CLK_FILTER_NEA
 
-kernel void	mandelbrot(write_only image2d_t output, float width, float height, int iter)
+kernel void	mandelbrot(t_img *output, float width, float height, int iter)
 {
 
 	size_t x = get_global_id(0);

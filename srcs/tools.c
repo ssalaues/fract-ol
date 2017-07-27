@@ -11,6 +11,25 @@
 /* ************************************************************************** */
 
 #include "fract.h"
+
+void	error(int err)
+{
+	if (err == 3)
+	{
+		ft_putstr("Error 3: Failed to create a device group\n");
+		exit(3);
+	}
+}
+
+void	fractInit(void)
+{
+	cl_device_id device id;
+	if (!(clGetDeviceIDs(NULL, 1, 1, &device_id, NULL))
+		{
+			
+		}
+}
+
 t_frac	*imageinit(t_frac *fr)
 {
 	return(fr);

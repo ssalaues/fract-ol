@@ -76,6 +76,7 @@ int	main(void)
 	t_frac fr;
 	
 	fr.rend = (t_img*)ft_memalloc(sizeof(t_img));
+	fr.rend->image = (unsigned char *)ft_memalloc(T_H * T_W);
 	fr.h = T_H;
 	fr.w = T_W;
     fr.zx = T_W;
