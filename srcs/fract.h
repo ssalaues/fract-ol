@@ -63,6 +63,7 @@ typedef struct	s_gpu
 	cl_kernel			kernel;		// compute kernel
 	cl_mem				input;		// device mem used for input array
 	cl_mem				output;		// device mem used for output array
+	int					err;
 }				t_gpu;
 
 typedef struct		s_frac
@@ -97,6 +98,7 @@ typedef struct		s_frac
 
 
 t_frac             *structdup(t_frac *fr, int max_row, int max_col);
+void				ft_error(int err);
 void				colors(t_frac fr, int col, int row);
 void				mand_colors(t_frac fr);
 int                 mand_init(int b, int x, int y, t_frac fr);

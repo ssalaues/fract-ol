@@ -12,22 +12,21 @@
 
 #include "fract.h"
 
-void	error(int err)
+void	ft_error(int err)
 {
 	if (err == 3)
-	{
-		ft_putstr("Error 3: Failed to create a device group\n");
-		exit(3);
-	}
+		ft_putstr("Error 3: Failed to create a device group!\n");
+	if (err == 4)
+		ft_putstr("Error 4: Failed to create a compute context!\n");
+	exit(err);
 }
 
-void	fractInit(void)
+void	fractInit(t_gpu *gpu)
 {
-	cl_device_id device id;
-	if (!(clGetDeviceIDs(NULL, 1, 1, &device_id, NULL))
-		{
-			
-		}
+	if (CL_SUCCESS != (gpu->err = clGetDeviceIDs(NULL, 1, 1, &gpu->device_id, NULL))) // connect compute device
+		ft_error(3);
+	if (!(gpu->context = clCreateContext(0, 1, &gpu->device_id, NULL, NULL, &gpu->err))) // create a compute context
+		ft_error(4);
 }
 
 t_frac	*imageinit(t_frac *fr)
