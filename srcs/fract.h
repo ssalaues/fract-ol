@@ -63,7 +63,7 @@ typedef struct	s_gpu
 	cl_kernel			kernel;		// compute kernel
 	cl_mem				input;		// device mem used for input array
 	cl_mem				output;		// device mem used for output array
-	int					err;
+	int					err;		// error code return from api calls
 }				t_gpu;
 
 typedef struct		s_frac
@@ -97,16 +97,14 @@ typedef struct		s_frac
 }					t_frac;
 
 
-t_frac             *structdup(t_frac *fr, int max_row, int max_col);
+t_frac				*structdup(t_frac *fr, int max_row, int max_col);
+const char			*mandy_str(void);
+t_gpu				*fractInit(t_gpu *gpu);
 void				ft_error(int err);
 void				colors(t_frac fr, int col, int row);
 void				mand_colors(t_frac fr);
 int                 mand_init(int b, int x, int y, t_frac fr);
 int                 mandy(t_frac fr);
-void                *mandy1(void *data); //For Threading application
-void                *mandy2(void *data);
-void                *mandy3(void *data);
-void                *mandy4(void *data);
 int                jules(t_frac fr);
 
 #endif

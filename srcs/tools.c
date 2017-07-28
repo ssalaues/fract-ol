@@ -18,15 +18,36 @@ void	ft_error(int err)
 		ft_putstr("Error 3: Failed to create a device group!\n");
 	if (err == 4)
 		ft_putstr("Error 4: Failed to create a compute context!\n");
+	if (err == 5)
+		ft_putstr("Error 5: Failed to create a command commands!\n");
+	if (err == 6)
+		ft_putstr("Error 6: Failed to create the computer program!\n");
+	if (err == 7)
+		ft_putstr("Error 7: Failed to build program executable!\n");
+	if (err == 8)
+		ft_putstr("Error 8: Failed to allocate device memory!\n");
 	exit(err);
 }
 
-void	fractInit(t_gpu *gpu)
+t_gpu	*fractInit(t_gpu *gpu)
 {
+	const char *mandy = mandy_str();
+	
 	if (CL_SUCCESS != (gpu->err = clGetDeviceIDs(NULL, 1, 1, &gpu->device_id, NULL))) // connect compute device
 		ft_error(3);
-	if (!(gpu->context = clCreateContext(0, 1, &gpu->device_id, NULL, NULL, &gpu->err))) // create a compute context
+	if (!(gpu->context = clCreateContext(0, 1, &(gpu->device_id), NULL, NULL, &gpu->err))) // create a compute context
 		ft_error(4);
+	if (!(gpu->commands = clCreateCommandQueue(gpu->context, gpu->device_id, 0, &gpu->err))) // create a command comands
+		ft_error(5);
+	if (!(gpu->program = clCreateProgramWithSource(gpu->context, 1, (const char**)& mandy, NULL, &gpu->err))) // create the compute porgram from the source buffer
+		ft_error(6);
+	if (CL_SUCCESS != (gpu->err = clBuildProgram(gpu->program, 0, NULL, NULL, NULL, NULL))) // create the compute kernel in the program we want to run
+		ft_error(7);
+	gpu->input = clCreateBuffer(gpu->context, CL_MEM_READ_ONLY, T_W * T_H, NULL, NULL); // create input output array in device memory for calc
+	gpu->output = clCreateBuffer(gpu->context, CL_MEM_WRITE_ONLY, T_W * T_H, NULL, NULL); //
+	if (!gpu->input || !gpu->output)
+		ft_error(8);
+	return (gpu);
 }
 
 t_frac	*imageinit(t_frac *fr)

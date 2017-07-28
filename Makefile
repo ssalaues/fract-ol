@@ -6,13 +6,13 @@
 #    By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/05 15:05:07 by ssalaues          #+#    #+#              #
-#    Updated: 2017/03/24 17:47:06 by ssalaues         ###   ########.fr        #
+#    Updated: 2017/07/28 14:36:16 by sesl             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-GF = -framework OpenGL -framework Appkit
+GF = -framework OpenGL -framework Appkit -framework OpenCl
 
 FLAGS = -Ofast -ffast-math -m64 -g
 

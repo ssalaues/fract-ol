@@ -12,33 +12,6 @@
 
 #include "fract.h"
 
-int	fr_tp(t_frac *fr)
-{
-	t_tp_thread *tp;
-	t_job_type	*j1;
-	t_job_type	*j2;
-	t_job_type	*j3;
-	t_job_type	*j4;
-	
-	tp = ft_tp_create(4);
-	j1 = (t_job_type*)malloc(sizeof(*j1));
-	j1->data = (void*)structdup(fr, 200, 400);
-	j2 = (t_job_type*)malloc(sizeof(*j2));
-	j2->data = (void*)structdup(fr, 400, 800);
-	j3 = (t_job_type*)malloc(sizeof(*j3));
-	j3->data = (void*)structdup(fr, 600, 1200);
-	j4 = (t_job_type*)malloc(sizeof(*j4));
-	j4->data = (void*)structdup(fr, 800, 1600);
-	
-	ft_tp_add_task(tp, &mandy1, j1);
-	ft_tp_add_task(tp, &mandy1, j2);
-	ft_tp_add_task(tp, &mandy1, j3);
-	ft_tp_add_task(tp, &mandy1, j4);
-	
-	ft_tp_wait_for_queue(tp);
-	mlx_put_image_to_window(fr->rend->win, fr->rend->mlx, fr->rend->image, 0, 0);
-	return (0);
-}
 
 int key_h(int kc, t_frac *fr)
 {
@@ -47,7 +20,7 @@ int key_h(int kc, t_frac *fr)
 	if (kc == KEY_LEFT)
 		jules(*fr);
 	//mandy(*fr);
-	fr_tp(fr);
+	//fr_tp(fr);
     printf("keycode:%d\n", kc);
     return (0);
 }
@@ -66,7 +39,7 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 			fr->scale *= 1.1;
 		printf("move: %i X: %f Y: %f\n", b, fr->zx, fr->zy);
 		//mandy(*fr);
-		fr_tp(fr);
+		//fr_tp(fr);
 	}
 	return (0);
 }
@@ -77,6 +50,8 @@ int	main(void)
 	
 	fr.rend = (t_img*)ft_memalloc(sizeof(t_img));
 	fr.rend->image = (unsigned char *)ft_memalloc(T_H * T_W);
+	fr.gpu = (t_gpu*)ft_memalloc(sizeof(t_gpu));
+	fr.gpu = fractInit(fr.gpu);
 	fr.h = T_H;
 	fr.w = T_W;
     fr.zx = T_W;
@@ -88,6 +63,5 @@ int	main(void)
 	mlx_key_hook(fr.rend->win, &key_h, &fr);
 	//mlx_expose_hook(fr.win, &mandy, &fr);
 	//mandy(fr);
-	fr_tp(&fr);
 	mlx_loop(fr.rend->mlx);
 }
