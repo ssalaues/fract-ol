@@ -31,18 +31,31 @@ void	ft_error(int err)
 
 t_gpu	*fractInit(t_gpu *gpu)
 {
-	const char *mandy = mandy_str();
-	
+	const char *KernelSource = mandy_str();
+	int test = 0;
 	if (CL_SUCCESS != (gpu->err = clGetDeviceIDs(NULL, 1, 1, &gpu->device_id, NULL))) // connect compute device
 		ft_error(3);
 	if (!(gpu->context = clCreateContext(0, 1, &(gpu->device_id), NULL, NULL, &gpu->err))) // create a compute context
 		ft_error(4);
 	if (!(gpu->commands = clCreateCommandQueue(gpu->context, gpu->device_id, 0, &gpu->err))) // create a command comands
 		ft_error(5);
-	if (!(gpu->program = clCreateProgramWithSource(gpu->context, 1, (const char**)& mandy, NULL, &gpu->err))) // create the compute porgram from the source buffer
+	if (!(gpu->program = clCreateProgramWithSource(gpu->context, 1, &KernelSource, NULL, &gpu->err))) // create the compute porgram from the source buffer
 		ft_error(6);
-	if (CL_SUCCESS != (gpu->err = clBuildProgram(gpu->program, 0, NULL, NULL, NULL, NULL))) // create the compute kernel in the program we want to run
+	if (CL_SUCCESS != (test = clBuildProgram(gpu->program, 0, NULL, NULL, NULL, NULL))) // create the compute kernel in the program we want to run
+	{    // Determine the size of the log
+		size_t log_size;
+		clGetProgramBuildInfo(gpu->program, gpu->device_id, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
+		
+		// Allocate memory for the log
+		char *log = (char *) malloc(log_size);
+		
+		// Get the log
+		clGetProgramBuildInfo(gpu->program, gpu->device_id, CL_PROGRAM_BUILD_LOG, log_size, log, NULL);
+		
+		// Print the log
+		printf("%s\n", log);
 		ft_error(7);
+	}
 	gpu->input = clCreateBuffer(gpu->context, CL_MEM_READ_ONLY, T_W * T_H, NULL, NULL); // create input output array in device memory for calc
 	gpu->output = clCreateBuffer(gpu->context, CL_MEM_WRITE_ONLY, T_W * T_H, NULL, NULL); //
 	if (!gpu->input || !gpu->output)

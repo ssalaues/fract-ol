@@ -43,7 +43,7 @@ int	mandy(t_frac fr)
 
 const char	*mandy_str(void)
 {
-	return ("const sampler_t sampler = CLK_NORMALIZED_COORDS_FLASE | CLK_FILTER_NEAREST;\n" \
+	return ("const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE | CLK_FILTER_NEAREST;\n" \
 			"kernel void mandelbrot(write_only image2d_t output, float width, float height, int iter) {\n" \
 				"size_t x = get_global_id(0);\n" \
 				"size_t y = get_global_id(1);\n" \
