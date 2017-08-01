@@ -44,14 +44,16 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 	return (0);
 }
 
+
+
 int	main(void)
 {
 	t_frac fr;
 	
 	fr.rend = (t_img*)ft_memalloc(sizeof(t_img));
-	fr.rend->image = (unsigned char *)ft_memalloc(T_H * T_W);
+	fr.rend->image = (unsigned int *)ft_memalloc(T_H * T_W * sizeof(unsigned int));
 	fr.gpu = (t_gpu*)ft_memalloc(sizeof(t_gpu));
-	fr.gpu = fractInit(fr.gpu);
+	fr.gpu = devInit(fr.gpu);
 	fr.h = T_H;
 	fr.w = T_W;
     fr.zx = T_W;

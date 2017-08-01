@@ -29,7 +29,7 @@ void	ft_error(int err)
 	exit(err);
 }
 
-t_gpu	*fractInit(t_gpu *gpu)
+t_gpu	*devInit(t_gpu *gpu)
 {
 	const char *KernelSource = mandy_str();
 	int test = 0;
@@ -60,6 +60,12 @@ t_gpu	*fractInit(t_gpu *gpu)
 	gpu->output = clCreateBuffer(gpu->context, CL_MEM_WRITE_ONLY, T_W * T_H, NULL, NULL); //
 	if (!gpu->input || !gpu->output)
 		ft_error(8);
+	gpu->dq = gcl_create_dispatch_queue(CL_DEVICE_TYPE_USE_ID, gpu->device_id);
+	if (!gpu->dq)
+	{
+		fprintf(stdout, "Unable to create a GPU-based dispatch queue.\n");
+		exit(1);
+	}
 	return (gpu);
 }
 

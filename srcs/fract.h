@@ -36,7 +36,7 @@
 
 typedef struct		s_img
 {
-	unsigned char	*image;
+	unsigned int	*image;
 	void			*mlx;
 	void			*win;
 }					t_img;
@@ -63,6 +63,7 @@ typedef struct	s_gpu
 	cl_kernel			kernel;		// compute kernel
 	cl_mem				input;		// device mem used for input array
 	cl_mem				output;		// device mem used for output array
+	dispatch_queue_t	dq;			// dispatch queue for threaded operation
 	int					err;		// error code return from api calls
 }				t_gpu;
 
@@ -99,7 +100,7 @@ typedef struct		s_frac
 
 t_frac				*structdup(t_frac *fr, int max_row, int max_col);
 const char			*mandy_str(void);
-t_gpu				*fractInit(t_gpu *gpu);
+t_gpu				*devInit(t_gpu *gpu);
 void				ft_error(int err);
 void				colors(t_frac fr, int col, int row);
 void				mand_colors(t_frac fr);
