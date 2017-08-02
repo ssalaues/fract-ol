@@ -48,12 +48,15 @@ int	mouse_h(int b, int x, int y, t_frac *fr)
 
 int	main(void)
 {
-	t_frac fr;
+	t_frac	fr;
+	t_gpu	gpu;
+	int		err = 0;
 	
+	gpu.count = T_H * T_W * sizeof(unsigned int);
 	fr.rend = (t_img*)ft_memalloc(sizeof(t_img));
-	fr.rend->image = (unsigned int *)ft_memalloc(T_H * T_W * sizeof(unsigned int));
+	fr.rend->image = (unsigned int *)ft_memalloc(gpu.count);
 	fr.gpu = (t_gpu*)ft_memalloc(sizeof(t_gpu));
-	fr.gpu = devInit(fr.gpu);
+	fr.gpu = devInit(&gpu);
 	fr.h = T_H;
 	fr.w = T_W;
     fr.zx = T_W;

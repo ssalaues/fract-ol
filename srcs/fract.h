@@ -65,6 +65,7 @@ typedef struct	s_gpu
 	cl_mem				output;		// device mem used for output array
 	dispatch_queue_t	dq;			// dispatch queue for threaded operation
 	int					err;		// error code return from api calls
+	int					count; // total pixels
 }				t_gpu;
 
 typedef struct		s_frac

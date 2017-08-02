@@ -26,6 +26,10 @@ void	ft_error(int err)
 		ft_putstr("Error 7: Failed to build program executable!\n");
 	if (err == 8)
 		ft_putstr("Error 8: Failed to allocate device memory!\n");
+	if (err == 9)
+		ft_putstr("Error 9: Failed to write to source array!\n");
+	if (err == 10)
+		ft_putstr("Error 10: Failed to set kernel arguments!\n");
 	exit(err);
 }
 
@@ -67,6 +71,22 @@ t_gpu	*devInit(t_gpu *gpu)
 		exit(1);
 	}
 	return (gpu);
+}
+
+void	fractInit(t_frac *fr, t_gpu *gpu)
+
+{
+	int err;
+	
+	err = clEnqueueWriteBuffer(gpu->commands, gpu->input, CL_TRUE, 0, gpu->count, fr->rend->image, 0, NULL, NULL);
+	if (err != CL_SUCCESS)
+		ft_error(9);
+	err = 0;
+	err = clSetKernelArg(gpu->kernel, 0, sizeof(cl_mem), &gpu->input);
+	err	|= clSetKernelArg(gpu->kernel, 1, sizeof(cl_mem), &gpu->output);
+	err	|= clSetKernelArg(gpu->kernel, 2, sizeof(unsigned int), &gpu->count);
+	if (err != CL_SUCCESS)
+		ft_error(10);
 }
 
 t_frac	*imageinit(t_frac *fr)
