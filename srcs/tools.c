@@ -30,6 +30,10 @@ void	ft_error(int err)
 		ft_putstr("Error 9: Failed to write to source array!\n");
 	if (err == 10)
 		ft_putstr("Error 10: Failed to set kernel arguments!\n");
+	if (err == 11)
+		ft_putstr("Error 11: Failed to retrieve kernel work group info!\n");
+	if (err == 12)
+		ft_putstr("Error 12: Failed to execute kernel!\n");
 	exit(err);
 }
 
@@ -77,16 +81,33 @@ void	fractInit(t_frac *fr, t_gpu *gpu)
 
 {
 	int err;
-	
+	fr->iter = 1000;
+	// Wrute data set into the input array in dev mem
 	err = clEnqueueWriteBuffer(gpu->commands, gpu->input, CL_TRUE, 0, gpu->count, fr->rend->image, 0, NULL, NULL);
 	if (err != CL_SUCCESS)
 		ft_error(9);
+	// Set the args to the compute kernel
 	err = 0;
-	err = clSetKernelArg(gpu->kernel, 0, sizeof(cl_mem), &gpu->input);
-	err	|= clSetKernelArg(gpu->kernel, 1, sizeof(cl_mem), &gpu->output);
-	err	|= clSetKernelArg(gpu->kernel, 2, sizeof(unsigned int), &gpu->count);
+	err = clSetKernelArg(gpu->kernel, 0, sizeof(cl_mem), &gpu->output);
+	err	|= clSetKernelArg(gpu->kernel, 1, sizeof(cl_mem), &fr->w);
+	err	|= clSetKernelArg(gpu->kernel, 2, sizeof(unsigned int), &fr->h);
+	err |= clSetKernelArg(gpu->kernel, 3, sizeof(int), &fr->iter);
 	if (err != CL_SUCCESS)
 		ft_error(10);
+	// Get max work group size for executing the kernel on dev
+	err = clGetKernelWorkGroupInfo(gpu->kernel, gpu->device_id, CL_KERNEL_WORK_GROUP_SIZE, sizeof(gpu->local), &gpu->local, NULL);
+	if (err != CL_SUCCESS)
+		ft_error(11);
+	// Execute the kernel over the entire range of 1d input data se
+	// using the max number of work group items for this dev
+	gpu->global = gpu->count;
+	err = clEnqueueNDRangeKernel(gpu->commands, gpu->kernel, 1, NULL, &gpu->global, &gpu->local, 0, NULL, NULL);
+	if (err)
+		ft_error(12);
+	//Wait for command commands to get serviced before reading back results
+	clFinish(gpu->commands);
+	// Read back the results from device to verify output
+	clEnqueueReadBuffer(gpu->commands, gpu->output, CL_TRUE, 0, sizeof(unsigned int) * gpu->count, fr->rend->image, 0, NULL, NULL);
 }
 
 t_frac	*imageinit(t_frac *fr)
