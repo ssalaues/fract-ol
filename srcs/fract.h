@@ -36,7 +36,7 @@
 
 typedef struct		s_img
 {
-	unsigned int	*image;
+	void			*image;
 	void			*mlx;
 	void			*win;
 }					t_img;

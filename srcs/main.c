@@ -57,12 +57,13 @@ int	main(void)
 	fr.zy = T_H;
 	gpu.count = T_H * T_W * sizeof(unsigned int);
 	fr.rend = (t_img*)ft_memalloc(sizeof(t_img));
-	fr.rend->image = (unsigned int *)ft_memalloc(gpu.count);
+//	fr.rend->image = (unsigned int *)ft_memalloc(gpu.count);
 	fr.gpu = (t_gpu*)ft_memalloc(sizeof(t_gpu));
 	fr.gpu = devInit(&gpu);
 	fr.scale = 1.;
 	fr.rend->mlx = mlx_init();
 	fr.rend->win = mlx_new_window(fr.rend->mlx, fr.w, fr.h, "Fract'ol");
+	fr.rend->image = mlx_new_image(fr.rend->mlx, 1920, 1080);
 	for (int i = 0; i < gpu.count; i++)
 	{
 		ft_putnbr(fr.rend->image[i]);
